@@ -3,7 +3,9 @@
 ## Current state
 
 - The approved title and abstract are on the landing page.
-- The Quarto website and first general-audience Reveal.js draft are in place.
+- The Quarto website and first general-audience Reveal.js draft are published at https://fjhickernell.github.io/StrategicSamplingColloquium/.
+- The GitHub Actions workflow and Pages deployment have succeeded.
+- Add this repository as a saved local Codex project when app project creation is available; use this repository as the primary folder.
 - Shared presentation support is pinned through `classlib`.
 
 ## Immediate next task

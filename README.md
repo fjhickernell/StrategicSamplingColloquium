@@ -2,6 +2,8 @@
 
 Source for Fred J. Hickernell's Illinois Tech School of Computing colloquium on November 9, 2026, at 1:50 PM America/Chicago. This repository contains the Quarto Reveal.js deck and a small companion website. The talk builds on, but is separate from, the MCQMC 2026 talks and manuscripts.
 
+[Colloquium website and slides](https://fjhickernell.github.io/StrategicSamplingColloquium/)
+
 ## Build
 
 Clone with submodules, then render the website and slides:
