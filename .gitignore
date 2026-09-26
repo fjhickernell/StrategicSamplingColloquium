@@ -11,3 +11,4 @@ slides/_freeze/
 .ipynb_checkpoints/
 
 /.quarto/
+slides/.gitignore
