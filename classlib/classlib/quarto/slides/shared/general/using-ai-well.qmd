@@ -1,0 +1,136 @@
+## Using AI well
+
+Roles overlap; choose deliberately. Think enough to know the problem AI should
+help solve
+
+::: {.columns}
+::: {.column width="48%"}
+### [Tutor]{.alert} → build understanding
+
+- Probe your understanding of the concept
+- Reveal misconceptions with Socratic questions
+- Contrast examples, nonexamples, and nearby concepts
+- Connect intuition, definitions, formulas, representations
+
+*"Use Socratic questions, examples, and nonexamples to probe my understanding
+and connect intuition to the formal definition"*
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+### [Critic / reviewer]{.alert} → test your work
+
+- Find gaps, hidden assumptions, unclear reasoning
+- Challenge a proof, derivation, program, or explanation
+- Suggest tests or counterexamples without rewriting everything
+
+*“Find the weakest step in my argument and explain why”*
+:::
+:::
+
+::: {.key-point}
+Prefer dialogue: strengthen your thinking before producing finished work
+:::
+
+---
+
+::: {.columns}
+::: {.column width="48%"}
+### [Architect / collaborator]{.alert} → plan the work
+
+- Decompose the problem into decisions and tasks
+- Compare approaches, tradeoffs, failure modes
+- Design an analysis, algorithm, program, workflow
+
+*“Propose two approaches, their assumptions, and how I could choose”*
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+### [Contractor]{.alert} → execute a specification
+
+- Implement code, plot, calculation, draft
+- Best with clear inputs, requirements, checks, desired output
+- Riskiest when you cannot evaluate the result
+
+*“Implement this specification and provide tests for each requirement”*
+:::
+:::
+
+Match tool to role: [the best AI for one role may not be the best for
+another]{.alert}. One AI can help you reason and specify; another execute. You
+inspect and revise
+
+::: {.key-point}
+Better-specified tasks permit more delegation
+
+Responsibility never transfers to AI
+:::
+
+---
+
+### Verify what AI produces
+
+AI output: [proposal to inspect]{.alert}, not authority. Expose assumptions,
+alternatives, reasons; verify appropriately
+
+::: {.columns}
+::: {.column width="48%"}
+#### Mathematics
+
+- Check definitions, hypotheses, theorem conditions
+- Rework important steps; test examples and counterexamples
+- Ask whether the conclusion follows from the stated assumptions
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+#### Computation
+
+- Run the code and inspect the output
+- Test edge cases, dimensions, units, signs, known special cases
+- Confirm that the computation answers the intended mathematical question
+:::
+:::
+
+::: {.key-point}
+Verify the result and whether the right problem was solved
+:::
+
+---
+
+### Responsibility stays with you
+
+::: {.columns}
+::: {.column width="48%"}
+#### Evidence and sources
+
+- Inspect original sources for claims and citations
+- Confirm that a source exists and supports the attributed claim
+- Separate sourced facts from plausible inference
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+#### Communication
+
+- Revise reasoning and wording yourself
+- Explain each choice and answer questions about it
+- Acknowledge meaningful assistance as required
+:::
+:::
+
+Afterward: Can you explain the result, modify it, solve a related problem
+without reproducing AI output?
+
+::: {.key-point}
+Delegate execution; retain understanding, judgment, responsibility
+:::

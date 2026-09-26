@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sampling More Strategically But Just as Flexibly as IID",
+    "section": "",
+    "text": "Monday, November 9, 2026 · 1:50 PM America/Chicago\nFred J. Hickernell\nIllinois Institute of Technology"
+  },
+  {
+    "objectID": "index.html#illinois-tech-school-of-computing-colloquium",
+    "href": "index.html#illinois-tech-school-of-computing-colloquium",
+    "title": "Sampling More Strategically But Just as Flexibly as IID",
+    "section": "",
+    "text": "Monday, November 9, 2026 · 1:50 PM America/Chicago\nFred J. Hickernell\nIllinois Institute of Technology"
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Sampling More Strategically But Just as Flexibly as IID",
+    "section": "Abstract",
+    "text": "Abstract\nMany scientific calculations estimate an average by drawing independent, identically distributed (IID) samples. We can draw as many as we like, but chance leaves gaps and clusters. Low-discrepancy (LD) sampling spreads points more evenly and can yield more accurate answers for the same computational effort. Traditionally, however, some of its most effective methods favor particular sample sizes. I will survey recent research by our group on LD constructions that preserve the freedom to add samples as needed, while retaining the benefits of more even coverage. I will also show how QMCPy makes these ideas available for practical simulation and how AI is accelerating our research and software development."
+  },
+  {
+    "objectID": "index.html#slides",
+    "href": "index.html#slides",
+    "title": "Sampling More Strategically But Just as Flexibly as IID",
+    "section": "Slides",
+    "text": "Slides\nView the talk slides"
+  },
+  {
+    "objectID": "index.html#related-work",
+    "href": "index.html#related-work",
+    "title": "Sampling More Strategically But Just as Flexibly as IID",
+    "section": "Related work",
+    "text": "Related work\n\nQMCPy — Python tools for (quasi-)Monte Carlo simulation and integration\nMCQMC 2026 talks — technical background on quasi-Monte Carlo and lattice and Kronecker sequences"
+  }
+]
