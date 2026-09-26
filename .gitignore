@@ -12,3 +12,7 @@ slides/_freeze/
 
 /.quarto/
 slides/.gitignore
+
+__pycache__/
+*.pyc
+outputs/

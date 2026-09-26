@@ -18,6 +18,10 @@ Many scientific calculations estimate an average by drawing independent, identic
 
 [View the talk slides](slides/StrategicSampling.html)
 
+## Companion notebook
+
+[Open the reproducible notebook](https://github.com/fjhickernell/StrategicSamplingColloquium/blob/main/notebooks/StrategicSampling.ipynb) for sampling figures, a small integration study, and the synthetic beam example.
+
 ## Related work
 
 - [QMCPy](https://qmcpy.org/) — Python tools for (quasi-)Monte Carlo simulation and integration
