@@ -1,0 +1,13 @@
+.DS_Store
+.quarto/
+_site/
+_freeze/
+**/*.quarto_ipynb
+*_files/
+site_libs/
+slides/_site/
+slides/.quarto/
+slides/_freeze/
+.ipynb_checkpoints/
+
+/.quarto/

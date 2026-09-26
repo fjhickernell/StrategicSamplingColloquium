@@ -1,0 +1,20 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - "*.qmd"
+  resources:
+    - ../assets/**
+
+metadata-files:
+  - ../classlib/classlib/quarto/slides/research/research-slides.yml
+  - ../classlib/classlib/quarto/metadata/hickernell-papers.yml
+
+format:
+  revealjs:
+    theme: default
+    footer: "Illinois Tech · School of Computing"
+
+execute:
+  warning: false
+  message: false
