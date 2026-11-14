@@ -18,9 +18,9 @@ genuine local exception explicitly, including its scope and reason. Flag an
 apparent accidental conflict for review instead of silently resolving it.
 <!-- classlib-consumer-contract:end -->
 
-# Strategic Sampling colloquium
+# Strategic Sampling seminar
 
-This repository holds the Illinois Tech School of Computing colloquium deck and
+This repository holds the Illinois Tech Applied Mathematics and Statistics Seminar deck and
 its companion Quarto site. The talk is separate from MCQMC 2026; that
 repository is a source for verified research, figures, and presentation ideas,
 not a place to develop this talk.

@@ -1,5 +1,6 @@
 .DS_Store
 .quarto/
+.quarto-watch-logs/
 _site/
 _freeze/
 **/*.quarto_ipynb

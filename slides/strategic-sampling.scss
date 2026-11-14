@@ -1,0 +1,160 @@
+/*-- scss:rules --*/
+
+/* Center each table entry vertically, including cells containing lists. */
+.reveal table th,
+.reveal table td {
+  vertical-align: middle;
+}
+
+.reveal table td > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* This talk's four-topic journey doubles as its section divider. */
+.reveal .slides section.journey {
+  text-align: left;
+}
+
+.reveal .slides section.journey h1 {
+  font-size: 1.4em;
+}
+
+.reveal .journey .journey-list li {
+  margin-bottom: 0.65em;
+}
+
+.reveal .journey-after-monte-carlo .journey-list li:nth-child(-n + 1),
+.reveal .journey-after-low-discrepancy .journey-list li:nth-child(-n + 2),
+.reveal .journey-after-recent-work .journey-list li:nth-child(-n + 3) {
+  opacity: 0.35;
+}
+
+/* Preserve the six application images without stretching or cropping them. */
+.reveal .application-gallery .column {
+  text-align: center;
+}
+
+.reveal .application-gallery p {
+  margin: 0.25em 0;
+}
+
+.reveal .application-gallery .image-source {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.reveal .application-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+/* Leave room for the displayed estimators and their trip questions. */
+.reveal .sampling-targets table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.reveal .sampling-targets th:nth-child(1),
+.reveal .sampling-targets col:nth-child(1) {
+  width: 18% !important;
+}
+
+.reveal .sampling-targets th:nth-child(2),
+.reveal .sampling-targets col:nth-child(2) {
+  width: 35% !important;
+}
+
+.reveal .sampling-targets th:nth-child(3),
+.reveal .sampling-targets col:nth-child(3) {
+  width: 47% !important;
+}
+
+/* Keep design names compact and leave space for their tradeoffs. */
+.reveal .sampling-designs table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.reveal .sampling-designs th:nth-child(1),
+.reveal .sampling-designs col:nth-child(1) {
+  width: 20% !important;
+}
+
+.reveal .sampling-designs th:nth-child(2),
+.reveal .sampling-designs col:nth-child(2),
+.reveal .sampling-designs th:nth-child(3),
+.reveal .sampling-designs col:nth-child(3) {
+  width: 40% !important;
+}
+
+/* Use collaborator portraits as the bullets for this talk's contribution rows. */
+.reveal .past-collaborators {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.88em;
+  margin: 0 0 0.5em;
+}
+
+.reveal .past-collaborators > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+.reveal .past-collaborators img {
+  width: 2em;
+  height: 2em;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.reveal .past-collaboration-cite {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.reveal .research-contributions {
+  display: grid;
+  row-gap: 0.4em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal .research-contributions > li {
+  display: grid;
+  grid-template-columns: 2.5em minmax(0, 1fr);
+  column-gap: 0.7em;
+  align-items: center;
+  margin: 0;
+  padding: 0.1em 0;
+}
+
+.reveal .research-contributions > li::marker {
+  content: "";
+}
+
+.reveal .research-contributions img {
+  width: 2.5em;
+  height: 2.5em;
+  object-fit: cover;
+  border-radius: 50%;
+  align-self: start;
+  margin: 0.1em 0 0;
+}
+
+.reveal .research-contributions .contribution-equation {
+  display: block;
+  margin-top: 0.15em;
+}
+
+.reveal .research-contributions .contribution-reference {
+  display: block;
+  font-size: 0.72em;
+  margin-top: 0.15em;
+}

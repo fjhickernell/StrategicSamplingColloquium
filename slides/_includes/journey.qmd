@@ -1,0 +1,6 @@
+::: {.journey-list}
+- [Monte Carlo]{.alert}: From Uncertainty to an Average, Probability Distribution, or Quantile
+- [Low discrepancy]{.alert}: place evaluations more evenly
+- [Recent work]{.alert}: keep the freedom to add samples, be robust to lost samples
+- [Future]{.alert}: human intelligence + AI accelerating discovery
+:::

@@ -13,7 +13,7 @@ metadata-files:
 format:
   revealjs:
     theme: default
-    footer: "Illinois Tech · School of Computing"
+    footer: "Illinois Tech · Applied Mathematics and Statistics"
 
 execute:
   warning: false

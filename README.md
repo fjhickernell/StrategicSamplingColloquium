@@ -1,8 +1,8 @@
 # Sampling More Strategically But Just as Flexibly as IID
 
-Source for Fred J. Hickernell's Illinois Tech School of Computing colloquium on November 9, 2026, at 1:50 PM America/Chicago. This repository contains the Quarto Reveal.js deck, a companion notebook, reproducible examples, and a small website. The talk builds on, but is separate from, the MCQMC 2026 talks and manuscripts.
+Source for Fred J. Hickernell's Applied Mathematics and Statistics Seminar at Illinois Tech on November 16, 2026, at 1:50 PM America/Chicago. This repository contains the Quarto Reveal.js deck, a companion notebook, reproducible examples, and a small website. The talk builds on, but is separate from, the MCQMC 2026 talks and manuscripts.
 
-[Colloquium website and slides](https://fjhickernell.github.io/StrategicSamplingColloquium/)
+[Seminar website and slides](https://fjhickernell.github.io/StrategicSamplingColloquium/)
 
 ## Build
 
@@ -21,14 +21,16 @@ The site publishes the rendered slides under `slides/` through `.github/workflow
 ## Companion notebook
 
 [StrategicSampling.ipynb](notebooks/StrategicSampling.ipynb) builds the introductory
-coverage and integration-error figures and a fresh synthetic-beam comparison.
+coverage figures, trip-time/Keister/Asian-option error comparisons, kernel
+discrepancy calculations, and synthetic-beam comparisons, including the error
+at every sample size with 64 randomly lost evaluations.
 The optional [Pydantic AI beam tool loop](examples/beam/README.md) uses a
 scripted policy by default and needs `pydantic-ai-slim`; the notebook itself
 uses the standard `qmcpy` environment.
 
 ## Sources
 
-- The title and abstract in `index.qmd` are the author's approved colloquium text.
+- The title and abstract in `index.qmd` are the author's approved seminar text.
 - Figure origins and generation steps are recorded in [`assets/figures/README.md`](assets/figures/README.md).
 - The deck uses the pinned HickernellAcademicLib `classlib` submodule for shared presentation styling.
 - The introductory narrative adapts public MATH 565 slides; the lattice and Kronecker research narrative and one figure are sourced from the public MCQMC 2026 decks.

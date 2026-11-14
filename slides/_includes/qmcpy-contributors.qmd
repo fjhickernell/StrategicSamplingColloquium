@@ -1,0 +1,46 @@
+<div class="collab-grid" style="grid-template-columns: repeat(6, 1fr);">
+<div class="collab-card">
+<img src="../assets/headshots/processed/choi-sou-cheng.jpg" alt="Sou-Cheng Choi" style="width:135px;">
+<div class="collab-caption">Sou-Cheng Choi</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/ding-yuhan.jpg" alt="Yuhan Ding" style="width:135px;">
+<div class="collab-caption">Yuhan Ding</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/herman-joshua.jpg" alt="Joshua Herman" style="width:135px;">
+<div class="collab-caption">Joshua Herman</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/jagadeeswaran-rathinavel.jpg" alt="R. Jagadeeswaran" style="width:135px;">
+<div class="collab-caption">R. Jagadeeswaran</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/jain-aadit.jpg" alt="Aadit Jain" style="width:135px;">
+<div class="collab-caption">Aadit Jain</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/matiukha-larysa.jpg" alt="Larysa Matiukha" style="width:135px;">
+<div class="collab-caption">Larysa Matiukha</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/owen-art.jpg" alt="Art Owen" style="width:135px;">
+<div class="collab-caption">Art Owen</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/robbe-pieterjan.jpg" alt="Pieterjan Robbe" style="width:135px;">
+<div class="collab-caption">Pieterjan Robbe</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/sorokin-aleksei.jpg" alt="Aleksei Sorokin" style="width:135px;">
+<div class="collab-caption">Aleksei Sorokin</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/vemuri-laasya-priya.jpg" alt="Laasya Priya Vemuri" style="width:135px;">
+<div class="collab-caption">Laasya Priya Vemuri</div>
+</div>
+<div class="collab-card">
+<img src="../assets/headshots/processed/xiong-yifei.jpg" alt="Yifei Xiong" style="width:135px;">
+<div class="collab-caption">Yifei Xiong</div>
+</div>
+</div>

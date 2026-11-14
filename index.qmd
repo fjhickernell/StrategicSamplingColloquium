@@ -3,9 +3,9 @@ title: "Sampling More Strategically But Just as Flexibly as IID"
 title-block-banner: false
 ---
 
-## Illinois Tech School of Computing colloquium
+## Applied Mathematics and Statistics Seminar
 
-**Monday, November 9, 2026 · 1:50 PM America/Chicago**
+**Monday, November 16, 2026 · 1:50 PM America/Chicago**
 
 **Fred J. Hickernell**<br>
 Illinois Institute of Technology
@@ -20,7 +20,7 @@ Many scientific calculations estimate an average by drawing independent, identic
 
 ## Companion notebook
 
-[Open the reproducible notebook](https://github.com/fjhickernell/StrategicSamplingColloquium/blob/main/notebooks/StrategicSampling.ipynb) for sampling figures, a small integration study, and the synthetic beam example.
+[Open the reproducible notebook](https://github.com/fjhickernell/StrategicSamplingColloquium/blob/main/notebooks/StrategicSampling.ipynb) for sampling figures, the trip-time, Keister, and Asian-option comparisons, kernel discrepancy calculations, and the synthetic beam example.
 
 ## Related work
 
