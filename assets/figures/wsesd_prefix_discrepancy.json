@@ -1,0 +1,98 @@
+{
+  "source_commit": "30c1f37af9544779941e054244b8d2da3627f5eb",
+  "kernel": "product(1+j^-2 B2(frac(x-y)))",
+  "dimensions": [
+    3,
+    6,
+    13
+  ],
+  "N": 1048576,
+  "direct_checks": 48,
+  "endpoint_checks": 132,
+  "max_direct_relative_difference": 1.7763568394002505e-15,
+  "max_endpoint_relative_difference": 5.106549894051682e-07,
+  "summary": [
+    {
+      "A": "W001",
+      "B": "KCN",
+      "size_class": "P",
+      "q50": 0.9733157410847305,
+      "win_count": 7,
+      "max_ratio": 1.120865382824436,
+      "q50_difference": -2.153055511655566e-12,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W001",
+      "B": "KCN",
+      "size_class": "U",
+      "q50": 0.9199638660220884,
+      "win_count": 992176,
+      "max_ratio": 1.1191338655234357,
+      "q50_difference": 1.0595528898704742e-09,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W025",
+      "B": "KCN",
+      "size_class": "P",
+      "q50": 0.9826914244079819,
+      "win_count": 7,
+      "max_ratio": 1.2443950761879887,
+      "q50_difference": 7.591338668788694e-11,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W025",
+      "B": "KCN",
+      "size_class": "U",
+      "q50": 0.9603768140477222,
+      "win_count": 750374,
+      "max_ratio": 1.2350696150234601,
+      "q50_difference": 1.6978798367262016e-09,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W001",
+      "B": "CBCDBD",
+      "size_class": "P",
+      "q50": 0.8458074574909935,
+      "win_count": 10,
+      "max_ratio": 1.0738090610814903,
+      "q50_difference": 6.0614880892373435e-09,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W001",
+      "B": "CBCDBD",
+      "size_class": "U",
+      "q50": 0.8417509262471691,
+      "win_count": 1045895,
+      "max_ratio": 1.0764762221893416,
+      "q50_difference": 3.6890411836409953e-09,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W025",
+      "B": "CBCDBD",
+      "size_class": "P",
+      "q50": 0.8954719787124175,
+      "win_count": 11,
+      "max_ratio": 0.9929420853392198,
+      "q50_difference": 1.8202328533334367e-11,
+      "win_count_difference": 0
+    },
+    {
+      "A": "W025",
+      "B": "CBCDBD",
+      "size_class": "U",
+      "q50": 0.8791937067133662,
+      "win_count": 1047536,
+      "max_ratio": 1.0006401427985823,
+      "q50_difference": 6.238187189033795e-09,
+      "win_count_difference": 0
+    }
+  ],
+  "seconds": 1.3853629999939585,
+  "limitation": "Evaluates supplied vectors; does not verify their CBC construction or integration arrays"
+}
