@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "headshots": {
+    "kritzer-peter": {
+      "name": "Peter Kritzer",
+      "file": "kritzer-peter.jpg",
+      "sha256": "aafc0a33d275e6fea15f551a3d1978d6270d3bd989b3b110af0ee1c8cf06d924"
+    },
+    "kuo-frances": {
+      "name": "Frances Kuo",
+      "file": "kuo-frances.png",
+      "sha256": "be1ce7ad308ef2a068f21af7accaa81221bdf64591ef358d57518f431af55c0f"
+    },
+    "nuyens-dirk": {
+      "name": "Dirk Nuyens",
+      "file": "nuyens-dirk.png",
+      "sha256": "08fdd94931cd8210791ecf82f8458043d52b8cbd67a88b94a5a0232dbebd4fe2"
+    },
+    "pride-anders": {
+      "name": "Anders Pride",
+      "file": "pride-anders.jpg",
+      "sha256": "f91688b6af4cc44dfd55f3b811ab4b27f6d043a61bc00d7c4190edc929fae2d0"
+    },
+    "kang-jiangrui": {
+      "name": "Jiangrui Kang",
+      "file": "kang-jiangrui.jpg",
+      "sha256": "32de3326125067c182b7c6a6e810c40785436809448b6136c1154acf34741df3"
+    },
+    "millet-megan": {
+      "name": "Megan Millet",
+      "file": "millet-megan.png",
+      "sha256": "62ed0526e2a1975889bd337150ea2ac8f01f431b9cb800f46befcb9a5a489ddb"
+    },
+    "choi-sou-cheng": {
+      "name": "Sou-Cheng Choi",
+      "file": "choi-sou-cheng.jpg",
+      "sha256": "526b829b6a97eccc0a9565399b58fe08083b8ac23a8da47bbe601a8b91fe7ba2"
+    },
+    "sorokin-aleksei": {
+      "name": "Aleksei Sorokin",
+      "file": "sorokin-aleksei.jpg",
+      "sha256": "3d9952d096911409d985484741a15230d901dedd7b4590618d7cfc4bdb48eee1"
+    },
+    "ding-yuhan": {
+      "name": "Yuhan Ding",
+      "file": "ding-yuhan.jpg",
+      "sha256": "795133fc88fe33b34eb711ff9416ec5ae7e087fadb3d27c77b322778f5cce781"
+    },
+    "herman-joshua": {
+      "name": "Joshua Herman",
+      "file": "herman-joshua.jpg",
+      "sha256": "ba82369b86571a4cb55d7a51d99d4f32eb7f7589ced2eb28b906b7c8f8da74e1"
+    },
+    "jagadeeswaran-rathinavel": {
+      "name": "R. Jagadeeswaran",
+      "file": "jagadeeswaran-rathinavel.jpg",
+      "sha256": "d7ed81c9f57f53d87a220762d55febc036d55cf22a46cff57c93728e24b5cc70"
+    },
+    "jain-aadit": {
+      "name": "Aadit Jain",
+      "file": "jain-aadit.jpg",
+      "sha256": "32b2f6ee241d05f139992a88f94100fbc198d4bf083e1047196a829c15e013f1"
+    },
+    "matiukha-larysa": {
+      "name": "Larysa Matiukha",
+      "file": "matiukha-larysa.jpg",
+      "sha256": "6914964611f7a9e0a4d028b42e93d8427b3b13b3104b74f93f89b78b645bb122"
+    },
+    "owen-art": {
+      "name": "Art Owen",
+      "file": "owen-art.jpg",
+      "sha256": "7fec4b1beeb0938ef383ef1f56c38054b9287e2d4c0f5a753a120cae2ee3214d"
+    },
+    "robbe-pieterjan": {
+      "name": "Pieterjan Robbe",
+      "file": "robbe-pieterjan.jpg",
+      "sha256": "328a7a2ce64bb633631d8b6e91012917ef1869f5d5daa947982bc53d76e6a28f"
+    },
+    "sharp-brandon": {
+      "name": "Brandon Sharp",
+      "file": "sharp-brandon.jpg",
+      "sha256": "fa0768e0308aea13ba9ba52a0982d0321b32ce70059ecd6caddeb958d342a4bf"
+    },
+    "vangu-samuel": {
+      "name": "Samuel Vangu",
+      "file": "vangu-samuel.jpg",
+      "sha256": "15aa1a3b4a12244230f16a4137dad332c0170df5b5cd31ca4a5b2780af060580"
+    },
+    "varela-richard": {
+      "name": "Richard Varela",
+      "file": "varela-richard.jpg",
+      "sha256": "fd49f363f773aca8a22697fb0275681829ca0d92710eed174785df2135e9edf9"
+    },
+    "vemuri-laasya-priya": {
+      "name": "Laasya Priya Vemuri",
+      "file": "vemuri-laasya-priya.jpg",
+      "sha256": "9928e6c720746528cf3e1b26b680315d8a85f4e8d940c6cea5e11a0c17381a6d"
+    },
+    "xiong-yifei": {
+      "name": "Yifei Xiong",
+      "file": "xiong-yifei.jpg",
+      "sha256": "cd2ee93ea512ff3a67f9bb51468729eb4533b036f359201601f2b752db989030"
+    }
+  }
+}
