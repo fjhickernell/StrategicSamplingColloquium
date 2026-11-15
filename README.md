@@ -33,5 +33,5 @@ uses the standard `qmcpy` environment.
 - The title and abstract in `index.qmd` are the author's approved seminar text.
 - Figure origins and generation steps are recorded in [`assets/figures/README.md`](assets/figures/README.md).
 - The deck uses the pinned HickernellAcademicLib `classlib` submodule for shared presentation styling.
-- The introductory narrative adapts public MATH 565 slides; the lattice and Kronecker research narrative and one figure are sourced from the public MCQMC 2026 decks.
+- The introductory narrative adapts public MATH 565 slides; the lattice and Kronecker research narrative draws on the public MCQMC 2026 decks. The current lattice-prefix comparison independently checks generating vectors from Jiangrui Kang’s manuscript; its source and validation are recorded in `assets/figures/README.md` and `examples/wsesd/`.
 - The synthetic beam code adapts the author’s Simon Grant prototype. Proposal text and saved grant results are not included.

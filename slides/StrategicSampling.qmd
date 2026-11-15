@@ -863,40 +863,46 @@ not a claim of a global minimum over all d-dimensional generating vectors.
 </li>
 </ul>
 
-## Earlier comparison (outdated)
+## Low discrepancy for arbitrary $n$ {#current-prefix-comparison}
 
-:::: {.columns}
-::: {.column width="60%"}
-![](../assets/figures/research_all_n_discrepancy.png){fig-alt="Outdated research benchmark of RMS discrepancy in 64 dimensions for a Kuo lattice, an earlier constructed lattice, and an earlier constructed Kronecker sequence. Its legend scores use the older n-weighted WSESD criterion." width=100%}
-:::
-::: {.column width="4%"}
-:::
-::: {.column width="36%"}
+![](../assets/figures/wsesd_prefix_discrepancy.svg){fig-alt="Independent reconstruction of Jiangrui Kang's current 13-dimensional lattice benchmark. Left: root expected squared discrepancy for KCN and a WSESD lattice at every integer sample size, with the analytic IID reference. Right: WSESD-to-KCN discrepancy ratios within each open doubling interval; dots show medians, shading the tenth to ninetieth percentiles, and crosses the worst prefix." width=96%}
 
-[Earlier results]{.alert}
+$d=13$ · $2^{10}\le n\le N=2^{20}$ · $w_n=n^{0.98}$
 
-Sample-size weight $w_n=n$
-
-$\epsilon=0$ in the earlier criterion
-
-$d=64$, $\gamma_\ell=\ell^{-2}$
-
-Updated comparison in progress
-
-:::
-::::
+Non-dyadic $n$: [94.7% improve]{.alert} on KCN · [11.9% worst increase]{.alert}
 
 ::: {.notes}
-This is an earlier benchmark, retained at Fred's request for spoken context.
-The numerical legend scores use sample-size weights n, the epsilon=0 case
-of the current n^(1-epsilon) convention. Positive epsilon is needed for
-the intended theoretical guarantee; its exact correspondence to the small
-epsilon in the discrepancy rate is deliberately not specified. Jiangrui's
-October 20 Overleaf is an older working snapshot, not authority for the
-current state of his work. No replacement experiment figures or data were
-found there. Do not describe this plot as a comparison of the current
-construction. Jiangrui is working on updated numerical experiments.
-The separate slide claiming a current 75-versus-101 improvement is removed.
+Current manuscript computations, independently reconstructed from the supplied
+generating vectors at manuscript commit 30c1f37, November 14, 2026. This
+replaces the historical 64-dimensional lattice/Kronecker plot; the new
+comparison contains lattices and an analytic IID reference, no Kronecker rule.
+KCN is the published Cools–Kuo–Nuyens embedded lattice vector. Both lattice
+vectors are fixed for maximum N=2^20 and dimension 13, with binary
+radical-inverse point order. The kernel is product_j(1+j^(-2) B_2({x_j-y_j})),
+where B_2(t)=t^2-t+1/6. Root ESD is invariant under a common random shift.
+
+The displayed WSESD vector is called W_0.01 in the manuscript, whose parameter
+convention uses n^(1-2 epsilon). The explicit weight n^0.98 avoids confusing
+that parameter with the talk's generic n^(1-epsilon) convention. Do not state
+an exact correspondence with the epsilon in the discrepancy-rate bound.
+
+The left panel retains every integer n from 1024 through 2^20; the right
+summarizes all non-dyadic n separately within each open doubling interval.
+Quantiles describe variation across n, not confidence intervals. Ratios below
+one favor WSESD. On the pooled 1,047,542 non-dyadic sizes, 992,176 improve
+on KCN (94.7147%), median ratio 0.919964, worst ratio 1.119134 at n=1048568.
+Pooling weights individual integers equally, so the last interval contributes
+nearly half. Dyadic endpoints are not included in that percentage: 7 of 11
+improve, with worst ratio 1.120865 at n=2^20. These are finite-prefix
+comparisons, not a uniform superiority result or an application error estimate.
+
+The independent reconstruction checks 48 small direct pair sums and 132
+published endpoints; maximum endpoint relative difference is 5.11e-7.
+All eight manuscript discrepancy win counts agree exactly. It evaluates the
+supplied vectors, without certifying CBC greedy minima or rerunning the
+integration experiments, whose raw arrays are stored outside the repository.
+Source, command, and verification record: examples/wsesd/check_discrepancy.py
+and assets/figures/wsesd_prefix_discrepancy.json.
 :::
 
 ## Back to the beam: 64 lost evaluations
