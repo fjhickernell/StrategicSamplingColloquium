@@ -158,3 +158,30 @@
   font-size: 0.72em;
   margin-top: 0.15em;
 }
+
+/* Keep the academic-site link and its existing QR together on the opening. */
+.reveal #title-slide .title-access {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85em;
+  margin-top: 0.7em;
+}
+
+.reveal #title-slide .title-access-qr img {
+  width: 220px;
+  height: auto;
+  margin: 0;
+}
+
+.reveal #title-slide .title-access-copy {
+  display: block;
+  text-align: left;
+  font-size: 0.72em;
+  line-height: 1.45;
+}
+
+.reveal #title-slide .title-access-copy a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}

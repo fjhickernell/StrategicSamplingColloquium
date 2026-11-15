@@ -1,6 +1,11 @@
 ---
 title: "Sampling More Strategically<br>But Just as Flexibly as IID"
-subtitle: "Applied Mathematics and Statistics Seminar<br>November 16, 2026 · 1:50 PM"
+subtitle: |
+  Applied Mathematics and Statistics Seminar<br>November 16, 2026 · 1:50 PM
+  <span class="title-access">
+  <a href="https://fjhickernell.github.io/HickernellAcademicLib/" class="title-access-qr"><img src="../classlib/website/fjh-academic-qr.png" alt="QR code for Fred Hickernell’s academic website"></a>
+  <span class="title-access-copy">Slides on my website<br><a href="https://fjhickernell.github.io/HickernellAcademicLib/">fjhickernell.github.io/HickernellAcademicLib/</a></span>
+  </span>
 author: "Fred J. Hickernell"
 
 format:
@@ -491,7 +496,7 @@ A random shift or scramble retains the design's coverage pattern
 
 - Every point is [uniformly distributed]{.alert} on the unit cube
 - Independent [replications]{.alert} give a way to assess sampling variability
-- No points on the boundary of the unit cube that get mapped to [infinity]{.alert}
+- Continuous randomization avoids inverse-transform [infinities]{.alert} almost surely
 
 ::: {.key-point}
 Randomized low discrepancy joins organized placement with uncertainty assessment
@@ -513,17 +518,17 @@ guards before inverse transforms; the notebook explicitly handles them.
 The reproducing kernel $K$ defines a Hilbert space $\cf$ of integrands
 
 \begin{equation*}
-\Dsc^2(P_n;K)=\sup_{\norm{g}_{\cf}\le1}
+\Dsc^2(\{\vu_i\}_{i=0}^{n-1};K)=\sup_{\norm{g}_{\cf}\le1}
 \left|\int_{[0,1]^d}g(\vu)\,\dif\vu
 -\frac1n\sum_{i=0}^{n-1}g(\vu_i)\right|^2
 \end{equation*}
 
 \begin{equation*}
-|\mu(g)-\widehat\mu_n(g)|\le\norm{g}_{\cf}\,\Dsc(P_n;K)
+|\mu(g)-\widehat\mu_n(g)|\le\norm{g}_{\cf}\,\Dsc(\{\vu_i\}_{i=0}^{n-1};K)
 \end{equation*}
 
 - The kernel encodes [smoothness and coordinate importance]{.alert}
-- With [moderate mixed smoothness]{.alert}, suitable designs attain $\Dsc(P_n;K)=\Order(n^{-1+\epsilon})$ for every $\epsilon>0$
+- With [moderate mixed smoothness]{.alert}, suitable designs attain $\Dsc(\{\vu_i\}_{i=0}^{n-1};K)=\Order(n^{-1+\epsilon})$ for every $\epsilon>0$
 
 ::: {.key-point}
 The bound is usually impractical for estimating the error\
@@ -531,7 +536,8 @@ Discrepancy gives a [figure of merit]{.alert} for sampling designs
 :::
 
 ::: {.notes}
-Here P_n consists of unit-cube nodes and the Hilbert space is an RKHS with
+The displayed node collection consists of unit-cube vectors; the Hilbert
+space is an RKHS with
 integrable kernel and bounded integration functional. The bound applies
 when g belongs to that space; the application examples are not being
 asserted to satisfy every smoothness assumption used in an arbitrary kernel.
@@ -558,31 +564,32 @@ K_1(\vu)&:=\int_{[0,1]^d}K(\vu,\vv)\,\dif\vv
 \end{align*}
 
 \begin{equation*}
-\Dsc^2(P_n;K)=K_0
+\Dsc^2(\{\vu_i\}_{i=0}^{n-1};K)=K_0
 -\frac2n\sum_{i=0}^{n-1}K_1(\vu_i)
 +\frac1{n^2}\sum_{i,j=0}^{n-1}K(\vu_i,\vu_j)
 \end{equation*}
 
 - Only the [sample points and kernel]{.alert} are needed
 - No expensive model evaluations
-- Discrepancy typically requires $\mathcal{O}(n^2)$ operations to compute
+- [Product kernels]{.alert}: $\Order(dn^2)$ arithmetic work for the direct pairwise formula
 
 ::: {.notes}
-The direct pairwise formula uses n^2 kernel evaluations. The operation count
-treats the dimension and the cost of one kernel evaluation as fixed; special
-kernel/design structure can permit faster computation.
+The direct pairwise formula uses n^2 kernel evaluations. A product-kernel
+evaluation costs O(d), giving O(d n^2) arithmetic operations. Other kernel
+representations can have different dimension costs; special kernel/design
+structure can permit faster computation.
 :::
 
 ---
 
-### Discrepancy under a random shift
+### Expected squared discrepancy under a random shift
 
 Use one common $\vDelta\sim\Unif([0,1]^d)$ and $\vu_i^{\vDelta}=(\vu_i+\vDelta)\bmod1$
 
 \begin{gather*}
 \tK(\vt):=\int_{[0,1]^d}K\bigl((\vt+\vv)\bmod1,\vv\bigr)\,\dif\vv,
 \qquad \overline K:=\int_{[0,1]^d}\tK(\vt)\,\dif\vt\\[0.5em]
-\ESD(P_n;K):=\Ex_{\vDelta}\bigl[\Dsc^2(P_n^{\vDelta};K)\bigr]=-\overline K+\frac1{n^2}\sum_{i,j=0}^{n-1}\tK\bigl((\vu_i-\vu_j)\bmod1\bigr)
+\ESD(\{\vu_i\}_{i=0}^{n-1};K):=\Ex_{\vDelta}\bigl[\Dsc^2(\{\vu_i^{\vDelta}\}_{i=0}^{n-1};K)\bigr]=-\overline K+\frac1{n^2}\sum_{i,j=0}^{n-1}\tK\bigl((\vu_i-\vu_j)\bmod1\bigr)
 \end{gather*}
 
 ::: {.key-point}
@@ -605,7 +612,7 @@ identity and the random-shift formula numerically.
 | Design | Natural prefixes |
 |:---|:---|
 | IID | Every $n$ |
-| Scrambled Sobol' and standard lattice rules | Strongest balance at $n=2^m$ |
+| Scrambled Sobol' and base-two embedded lattices | Strongest balance at $n=2^m$ |
 | Halton and Kronecker sequences | Every $n$ |
 
 Why [not]{.alert} a favored sample size?
@@ -630,14 +637,18 @@ not a particular missing-data pattern or an integration-error guarantee.
 
 ## QMCPy: a community toolbox
 
+:::: {.collab-grid .qmcpy-community style="grid-template-columns: repeat(6, minmax(0, 1fr));"}
+::: {.qmcpy-connects style="grid-column: 1 / span 4;"}
 [QMCPy](https://qmcpy.org/) connects
 
 - Sampling designs
 - Probability transforms
 - Integrands
 - Error assessment
+:::
 
 {{< include _includes/qmcpy-contributors.qmd >}}
+::::
 
 ::: {.notes}
 Photo selection confirmed by Fred on November 13, 2026. The selection includes
@@ -647,6 +658,16 @@ Vemuri, and Yifei Xiong. Laasya is listed once. Art contributes ideas even
 where he has contributed little code. These portraits recognize selected
 contributors to QMCPy's ideas and software, not an exhaustive list of the
 broader community.
+Fred added Brandon Sharp, Richard Varela and Samuel Vangu on November 15,
+2026. The fourteen-person QMCPy gallery features Sou-Cheng Choi and Aleksei
+Sorokin in the top row to the right of the introductory text. The remaining
+twelve are in surname order in the two rows below. All share one six-column
+grid so portrait columns align. All display names come
+from the pinned master collaborator catalog via data/collaborators.yml.
+The publishing copies are checked against the iCloud master-photo hashes.
+Samuel's public website photo was cropped with the existing deterministic
+helper; the original remains in the iCloud archive. Ishaan and Joshua Park
+are deferred until their photos are available.
 :::
 
 ## QMCPy: activity on PyPI
@@ -673,24 +694,30 @@ QMCPy report.
 
 An [extensible sequence]{.alert} keeps every prefix
 
-The research question is the [quality of every prefix]{.alert}, not just the full preferred blocks
+What is the [quality of every prefix]{.alert}, not just the full preferred blocks?
 
-Suppose preferred sample sizes satisfy $\Dsc(P_{n_m};K)\le Cn_m^{-p}$, $m=0,1,\ldots$
+<h3>The best one can expect</h3>
+
+Under the [discrepancy assumptions in Bonus material](#bonus-material)
+
+Suppose preferred sample sizes, $n_m$, satisfy $\Dsc(\{\vu_i\}_{i=0}^{n_m-1};K)\le Cn_m^{-p}$, $m=0,1,\ldots$
 
 - Losing or adding a [bounded number]{.alert} of arbitrary points
   - Keep the [same rate]{.alert} when $p\le1$
   - Still get $\Order(n^{-1})$ when $p>1$
-- Losing or adding a [fraction $\alpha$]{.alert} of the points: we can only guarantee discrepancy of $\Order(\alpha)$
-- Under standard discrepancy lower bounds, $p>1$ requires [unbounded gaps]{.alert} between preferred sample sizes
+- Losing or adding a [fraction $\alpha<1$]{.alert} of the points: guarantee $\Order(n_m^{-p}+\alpha)$
+- $p>1$ requires [unbounded gaps]{.alert} between preferred sample sizes, $n_m$
+
+[Proofs in Bonus material](#bonus-material){.small}
 
 ::: {.notes}
-P_n is the equal-weight design {u_i}_{i=0}^{n-1}, with vector-valued nodes.
-The modified design tilde P_n results from arbitrary additions or deletions,
+The node collections have equal weights and vector-valued nodes.
+An edited node collection results from arbitrary additions or deletions,
 so it need not remain a prefix of the original sequence. Assume a uniform
 upper bound A on discrepancy for arbitrary finite point sets, as supplied
 by a bounded kernel diagonal. If at most r points are changed, the triangle
 inequality gives, for deletions,
-D(tilde P_{N-r}) <= (C N^(1-p) + A r)/(N-r); additions have denominator N+r.
+D(retained nodes) <= (C N^(1-p) + A r)/(N-r); additions have denominator N+r.
 For bounded r, this gives O(N^(-min(p,1))): the rate is preserved for p<=1,
 and at least O(N^-1) remains when p>1. The fraction bound holds uniformly
 for r<=alpha N with alpha bounded away from 1. It is an upper guarantee,
@@ -705,18 +732,20 @@ checked against the other talk's 'The best we can hope for' and proofs slides.
 
 ## Lattice and Kronecker: two ways to proceed
 
-The base-two [van der Corput sequence]{.alert} $\phi_2(i)$ reverses the binary digits of $i$ after the binary point
+The base-two [van der Corput sequence]{.alert} $\phi(i)$ reverses the binary digits of $i$ after the binary point
 
 \begin{equation*}
-\phi_2(6)=\phi_2\bigl((110)_2\bigr)=(0.011)_2=3/8
+\phi(6)=\phi\bigl((110)_2\bigr)=(0.011)_2=3/8
 \end{equation*}
+
+![](../assets/figures/van_der_corput_prefix.svg){fig-alt="A one-dimensional number line labels phi at indices zero through six. The values in index order are zero, one half, one quarter, three quarters, one eighth, five eighths and three eighths. The point phi of six equals three eighths is highlighted." width=94%}
 
 ::: {.columns}
 ::: {.column width="47%"}
 ### Lattice sequence
 
 \begin{gather*}
-\vu_i=\phi_2(i)\,\vzeta+\vDelta\pmod 1\\
+\vu_i=\phi(i)\,\vzeta+\vDelta\pmod 1\\
 \vzeta\in\naturals^d
 \end{gather*}
 
@@ -742,8 +771,12 @@ For the finite search range $n\le N$, use one random shift $\vDelta\sim\Unif([0,
 
 ::: {.notes}
 The van der Corput map reverses the finite binary expansion of a nonnegative
-integer and places it after the binary point: phi_2((a_m...a_0)_2) equals
+integer and places it after the binary point: phi((a_m...a_0)_2) equals
 (0.a_0...a_m)_2. Thus 6=(110)_2 maps to (0.011)_2=3/8.
+The number line labels the seven points phi(0),...,phi(6) at their exact
+positions: 0, 1/2, 1/4, 3/4, 1/8, 5/8, 3/8 in index order. Its spatial
+order differs from index order. The highlighted point is the i=6 example;
+the tick at 1 is an axis reference, not another sequence point.
 The lattice generator is an integer d-vector; the Kronecker generator can be
 reduced modulo one to [0,1)^d. All node, generator and shift symbols are vectors.
 The displayed ordinary integer lattice vector represents a finite search
@@ -759,48 +792,49 @@ and Kronecker comparison; no visible cross-talk citation is needed here.
 ## How do we choose a good sequence?
 
 \begin{equation*}
-\operatorname{WSESD}(N,d)=\sum_{n=1}^{N}n^{1-\epsilon}\,\ESD(P_n;K),\qquad \epsilon>0
+\operatorname{WSESD}(N,d)=\sum_{n=1}^{N}\omega_n\,\ESD(\{\vu_i\}_{i=0}^{n-1};K),\qquad \omega_n=n^{1-\epsilon},\quad \epsilon>0
 \end{equation*}
 
 [WSESD]{.alert}: weighted sum of expected squared discrepancy over all prefixes
 
-[ESD: expected squared discrepancy]{.alert}, $\ESD(P_n;K)=\Ex_{\vDelta}[\Dsc^2(P_n^{\vDelta};K)]$
+[ESD: expected squared discrepancy]{.alert}, $\ESD(\{\vu_i\}_{i=0}^{n-1};K)=\Ex_{\vDelta}[\Dsc^2(\{\vu_i^{\vDelta}\}_{i=0}^{n-1};K)]$
 
 \begin{align*}
 \ESD_{\mathrm{lattice}}(n)
-&=-\overline K+\frac1{n^2}\biggl[n\tK(\vzero)+\sum_{k=1}^{2^m-1}c_n(k)\,\tK(\phi_2(k)\vzeta\bmod1)\biggr]\\[0.5em]
+&=-\overline K+\frac1{n^2}\biggl[n\tK(\vzero)+\sum_{k=1}^{2^m-1}c_n(k)\,\tK(\phi(k)\vzeta\bmod1)\biggr]\\[0.5em]
 \ESD_{\mathrm{Kronecker}}(n)
 &=-\overline K+\frac1{n^2}\biggl[n\tK(\vzero)+2\sum_{k=1}^{n-1}(n-k)\,\tK(k\vzeta\bmod1)\biggr]
 \end{align*}
 
-$m=\lceil\log_2 n\rceil$; $c_n(k)$ counts ordered scalar differences equal to $\phi_2(k)$ modulo one
+$m=\lceil\log_2 n\rceil$; $c_n(k)$ counts ordered scalar differences equal to $\phi(k)$ modulo one
 
-- [Linear ESD cost]{.alert}: $\Order(n)$ operations for fixed $d$, using fewer than $2n$ kernel terms
-- [Linear WSESD cost]{.alert}: $\Order(N)$ per candidate generator after precomputing sample-size weights
+- [ESD cost]{.alert}: $\Order(dn)$, with fewer than $2n$ product-kernel terms
+- [WSESD cost]{.alert}: $\Order(dN)$ per full generator, after precomputing sample-size weights
 
 ::: {.notes}
 The shifted kernel tilde K and its integral bar K were defined on the earlier
 random-shift slide. Both formulas group the n^2 ordered pairs by distinct
 scalar differences. For the lattice, c_n(k) counts ordered scalar pairs
-(i,j) with phi_2(i)-phi_2(j)=phi_2(k) modulo one, i,j<n. If 2^(r-1)<=k<2^r,
+(i,j) with phi(i)-phi(j)=phi(k) modulo one, i,j<n. If 2^(r-1)<=k<2^r,
 then c_n(k)=n-(n mod 2^r)+2 max((n mod 2^r)-2^(r-1),0).
 These multiplicities are constant on dyadic blocks and can be filled in
 O(2^m)=O(n) work. The Kronecker coefficient 2(n-k) combines the positive
 and negative lags using the evenness of the shift-averaged kernel.
-Linear operation counts assume the shifted kernel is available in a usable
-closed form and hold d fixed. For product kernels a fresh kernel evaluation
-costs O(d), giving O(d n); cached CBC coordinate products give O(n) per
-candidate coordinate. The WSESD statement is per candidate after weights that
-depend only on sample size have been prepared; it does not claim that N
-separate O(n) computations, coefficient setup, or a whole CBC search are O(N).
-The current objective uses w_n=n^(1-epsilon). In the lattice aggregate, the
+The arithmetic counts assume a product shifted kernel in usable closed form.
+A fresh d-dimensional product costs O(d), hence O(d n) for one ESD and
+O(d N) for the aggregated WSESD of a full generating vector. Reusing earlier
+coordinate products gives O(n) and O(N), respectively, per trial coordinate.
+The sample-size coefficients are precomputed; summing N separately computed
+ESDs or searching a whole CBC candidate set is not claimed to cost O(d N).
+The current objective uses omega_n=n^(1-epsilon), reserving w_{n,i} for
+weights on function values in the integration estimator. In the lattice aggregate, the
 dyadic-block weights are q_r=sum_{n=1}^N n^(-1-epsilon) c_n(k) for k in block r.
 The Kronecker kernel coefficient for lag k is
 2 sum_{n=k+1}^N (n-k) n^(-1-epsilon), computable from cumulative power sums.
 The constant and zero-lag coefficients are respectively
 -bar K sum_{n=1}^N n^(1-epsilon) and tilde K(0) sum_{n=1}^N n^(-epsilon).
-Thus the per-candidate linear cost remains valid after the sample-size weights
-are prepared. This weighting supersedes the n-weighted objective in the
+Thus the full-vector WSESD cost is O(d N) after preparing sample-size weights;
+the cached coordinate-candidate cost is O(N). This weighting supersedes the n-weighted objective in the
 reference talk; its individual ESD identities remain unchanged.
 The small positive epsilon in this aggregate weight need not be the same
 parameter as the epsilon in the near-n^(-1+epsilon) discrepancy bound.
@@ -822,42 +856,58 @@ For each coordinate $\ell=1,\ldots,d$, choose
 - Choose the [next coordinate]{.alert} $\zeta_\ell$ to minimize WSESD over its allowed candidates $\mathcal C_\ell$
 - Fix that choice and proceed to coordinate $\ell+1$
 
+For product kernels, with earlier-coordinate products cached
+
+| Sequence | CBC construction cost |
+|:---|:---|
+| Lattice, $N=2^m$, fast FFT search | $\Order(dN\log N)$ |
+| Kronecker, at most $M$ candidates per coordinate | $\Order(dMN)$ |
+
 ::: {.notes}
 The semicolon makes the dependence of the criterion on the candidate generator
 explicit. At stage ell, use the ell-dimensional criterion and hold every
 previously chosen coordinate fixed. The candidate set reflects the lattice
 or Kronecker construction. This is conditional minimization at each stage,
 not a claim of a global minimum over all d-dimensional generating vectors.
+M is the maximum size of the Kronecker candidate sets C_ell; it is not
+used for another quantity in this talk. Each coordinate candidate costs
+O(N) with cached previous-coordinate kernel products, giving O(d M N)
+for a scan. For the lattice, fast simultaneous candidate evaluation on
+a power-of-two modulus uses FFTs: O(d N log N), including the O(N)
+sample-size coefficient preparation. This is the fast product-weight
+CBC implementation, not a direct N-candidate scan (which would cost
+O(d N^2)). Source: Jiangrui manuscript 30c1f37, fast WSESD-CBC theorem;
+the construction parameter convention does not change these costs.
 :::
 
-## Recent contributions
+## Recent contributions and ongoing work
 
 <p class="past-collaborators">Building on past collaboration with
-<span><img src="../assets/headshots/processed/kritzer-peter.jpg" alt="Peter Kritzer">Peter Kritzer</span>
-<span><img src="../assets/headshots/processed/kuo-frances.png" alt="Frances Kuo">Frances Kuo</span>
-<span><img src="../assets/headshots/processed/nuyens-dirk.png" alt="Dirk Nuyens">Dirk Nuyens</span>
+<span><img src="../assets/headshots/processed/{{< meta headshots.kritzer-peter.file >}}" alt="{{< meta collaborators.kritzer-peter.name >}}">{{< meta collaborators.kritzer-peter.name >}}</span>
+<span><img src="../assets/headshots/processed/{{< meta headshots.kuo-frances.file >}}" alt="{{< meta collaborators.kuo-frances.name >}}">{{< meta collaborators.kuo-frances.name >}}</span>
+<span><img src="../assets/headshots/processed/{{< meta headshots.nuyens-dirk.file >}}" alt="{{< meta collaborators.nuyens-dirk.name >}}">{{< meta collaborators.nuyens-dirk.name >}}</span>
 <a class="past-collaboration-cite" href="{{< meta papers.hickrikuonuy_2012_weighted_integration.doi_url >}}" target="_blank" rel="noopener">Hickernell et al. (2012)</a>
 </p>
 
 <ul class="research-contributions" role="list">
 <li>
-<img src="../assets/headshots/processed/matiukha-larysa.jpg" alt="Larysa Matiukha">
-<div><span class="alert">Larysa Matiukha</span> — showed that lattice generating vectors $\vzeta$ exist with good discrepancy for every sample size $n$ and dimension $d$
+<img src="../assets/headshots/processed/{{< meta headshots.matiukha-larysa.file >}}" alt="{{< meta collaborators.matiukha-larysa.name >}}">
+<div><span class="alert">{{< meta collaborators.matiukha-larysa.name >}}</span> — showed that lattice generating vectors $\vzeta$ exist with good discrepancy for every sample size $n$ and dimension $d$
 <span class="contribution-reference"><a href="https://arxiv.org/abs/2610.10543" target="_blank" rel="noopener">Matiukha, Ding &amp; Hickernell (2026), arXiv:2610.10543</a></span>
 </div>
 </li>
 <li>
-<img src="../assets/headshots/processed/pride-anders.jpg" alt="Anders Pride">
-<div><span class="alert">Anders Pride</span> — derived the lattice WSESD formulas and extended them beyond van der Corput ordering, including Gray code</div>
+<img src="../assets/headshots/processed/{{< meta headshots.pride-anders.file >}}" alt="{{< meta collaborators.pride-anders.name >}}">
+<div><span class="alert">{{< meta collaborators.pride-anders.name >}}</span> — derived the lattice WSESD formulas and extended them beyond van der Corput ordering, including Gray code</div>
 </li>
 <li>
-<img src="../assets/headshots/processed/kang-jiangrui.jpg" alt="Jiangrui Kang">
-<div><span class="alert">Jiangrui Kang</span> — proved that the CBC construction produces such generating vectors</div>
+<img src="../assets/headshots/processed/{{< meta headshots.kang-jiangrui.file >}}" alt="{{< meta collaborators.kang-jiangrui.name >}}">
+<div><span class="alert">{{< meta collaborators.kang-jiangrui.name >}}</span> — proved that the CBC construction for lattices produces generating vectors that give good sequences for all $n$</div>
 </li>
 
 <li>
-<img src="../assets/headshots/processed/millet-megan.png" alt="Megan Millet">
-<div><span class="alert">Megan Millet</span> — is exploring fast computation of nonconstant sample weights to reduce discrepancy for arbitrary $n$
+<img src="../assets/headshots/processed/{{< meta headshots.millet-megan.file >}}" alt="{{< meta collaborators.millet-megan.name >}}">
+<div><span class="alert">{{< meta collaborators.millet-megan.name >}}</span> — is exploring fast computation of nonconstant sample weights to reduce discrepancy for arbitrary $n$
 <span class="contribution-equation">$\displaystyle \mu \approx \frac1n\sum_{i=0}^{n-1} w_{n,i}g(\vu_i)$</span>
 </div>
 </li>
@@ -865,9 +915,9 @@ not a claim of a global minimum over all d-dimensional generating vectors.
 
 ## Low discrepancy for arbitrary $n$ {#current-prefix-comparison}
 
-![](../assets/figures/wsesd_prefix_discrepancy.svg){fig-alt="Independent reconstruction of Jiangrui Kang's current 13-dimensional lattice benchmark. Left: root expected squared discrepancy for KCN and a WSESD lattice at every integer sample size, with the analytic IID reference. Right: WSESD-to-KCN discrepancy ratios within each open doubling interval; dots show medians, shading the tenth to ninetieth percentiles, and crosses the worst prefix." width=96%}
+![](../assets/figures/wsesd_prefix_discrepancy.svg){fig-alt="Independent reconstruction of Jiangrui Kang's current 13-dimensional lattice benchmark. Left: root expected squared discrepancy for KCN and a WSESD lattice at every integer sample size, with the analytic IID reference. Right: one box plot of WSESD-to-KCN root ESD ratios centered between its two bounding power-of-two ticks for every open doubling interval. Each box spans the first to third quartiles, the line is the median, and whiskers show the minimum and maximum over all integer sample sizes in that interval." width=96%}
 
-$d=13$ · $2^{10}\le n\le N=2^{20}$ · $w_n=n^{0.98}$
+$d=13 \quad\cdot\quad 2^{10}\le n\le N=2^{20} \quad\cdot\quad \omega_n=n^{0.98}$
 
 Non-dyadic $n$: [94.7% improve]{.alert} on KCN · [11.9% worst increase]{.alert}
 
@@ -876,7 +926,8 @@ Current manuscript computations, independently reconstructed from the supplied
 generating vectors at manuscript commit 30c1f37, November 14, 2026. This
 replaces the historical 64-dimensional lattice/Kronecker plot; the new
 comparison contains lattices and an analytic IID reference, no Kronecker rule.
-KCN is the published Cools–Kuo–Nuyens embedded lattice vector. Both lattice
+KCN denotes the published Kuo–Cools–Nuyens embedded lattice vector
+(Cools, Kuo and Nuyens, 2006, https://doi.org/10.1137/06065074X). Both lattice
 vectors are fixed for maximum N=2^20 and dimension 13, with binary
 radical-inverse point order. The kernel is product_j(1+j^(-2) B_2({x_j-y_j})),
 where B_2(t)=t^2-t+1/6. Root ESD is invariant under a common random shift.
@@ -888,7 +939,13 @@ an exact correspondence with the epsilon in the discrepancy-rate bound.
 
 The left panel retains every integer n from 1024 through 2^20; the right
 summarizes all non-dyadic n separately within each open doubling interval.
-Quantiles describe variation across n, not confidence intervals. Ratios below
+Every box is centered between its interval boundaries on the log2 n axis:
+for example, the first box lies between the ticks 2^10 and 2^11. Powers of
+two themselves are excluded from these boxes.
+For each interval the box spans the 25th to 75th percentiles, the line is the
+median, and whiskers give the full minimum-to-maximum range. There are no
+random replications in this panel; the distribution is over integer n.
+Ratios below
 one favor WSESD. On the pooled 1,047,542 non-dyadic sizes, 992,176 improve
 on KCN (94.7147%), median ratio 0.919964, worst ratio 1.119134 at n=1048568.
 Pooling weights individual integers equally, so the last interval contributes
@@ -913,10 +970,10 @@ and assets/figures/wsesd_prefix_discrepancy.json.
 ![](../assets/figures/beam_missing_points_rmse.png){fig-alt="Paired beam mean-error plots: the first n evaluations of the complete sequence on the left, and the first n surviving evaluations on the right. Each replication removes one uniform random set of 64 indices from the full 262144-point sample, shared across all five methods and growing prefixes. Both panels begin at n equals 64 and have trend guides with slopes minus one half and minus one. The horizontal axes count evaluations actually used." width=96%}
 :::
 
-$64$ randomizations · every integer $n$ (evaluations used)
+Standard QMCPy designs · $64$ randomizations · every integer $n$ used
 
 ::: {.key-point .small}
-Losses accumulate as $n$ grows, so the slope over this range need not be the asymptotic rate
+Losses accumulate as $n$ grows and [cannot be repaired]{.alert}, so the slope over this range need not be the asymptotic rate
 :::
 
 ::: {.notes}
@@ -927,6 +984,7 @@ its mean is approximately 1.11614674373 and its replication standard error
 is 2.43e-9. Three reference standard errors are 3.35% of the smallest plotted
 RMSE. This is a statistical reference, not a certified continuum error bound;
 spatial-discretization error is separate.
+Lost evaluations are assumed unrecoverable; the estimator uses only survivors.
 In each of 64 comparison replications, draw one set of 64 indices uniformly
 without replacement from the full 2^18-point sample, independently of output
 values. Use this same loss set across all five methods and every growing
@@ -972,14 +1030,14 @@ integer n also separates preferred-size troughs from typical prefix behavior.
 
 # Future: Human Intelligence + AI Accelerating Discovery {#ai-accelerated-research}
 
-We already use AI to
+These are [interesting times]{.alert}; we already use AI to
 
 - Review the literature
 - Construct arguments
 - Edit writing
 
 ::: {.key-point}
-[Human intelligence is needed to guide AI]{.alert} and check its reasoning
+[Human intelligence should guide AI]{.alert} and check its reasoning
 :::
 
 ::: {.small}
@@ -1021,7 +1079,7 @@ The existing bounded beam prototype remains in examples/beam/ for exploration.
 ## Take-home message
 
 ::: {.main-message}
-Sample more strategically while keeping the freedom to add more as needed, and do not sweat the data losses
+Sample more strategically while keeping the freedom to add more as needed, and do not sweat a few lost evaluations
 :::
 
 - LD often beats IID by [a lot]{.alert}
@@ -1035,3 +1093,178 @@ Sample more strategically while keeping the freedom to add more as needed, and d
 - [Hickernell, Kritzer, Kuo & Nuyens (2012), *Weighted compound integration rules with higher order convergence for all $N$*](https://doi.org/10.1007/s11075-011-9482-5)
 - [Matiukha, Ding & Hickernell (2026)](https://arxiv.org/abs/2610.10543)
 - [QMCPy documentation](https://qmcpy.org/)
+
+# Bonus Material {#bonus-material}
+
+Proofs supporting the flexible-sample-size claims
+
+- [One identity for adding and removing points](#bonus-discrepancy-identity)
+- [Losing or adding a bounded number of points](#bonus-bounded-edits)
+- [Losing or adding a fraction of the points](#bonus-fraction-edits)
+- [Why faster convergence requires growing gaps](#bonus-growing-gaps)
+
+::: {.small}
+Building on [Hickernell, Kritzer, Kuo & Nuyens (2012)](https://doi.org/10.1007/s11075-011-9482-5)
+:::
+
+[Return to the flexibility claims](#recent-work-flexible-low-discrepancy){.small}
+
+::: {.notes}
+These optional slides follow the existing ending and sources; they are not
+part of the planned 50-minute main presentation. Adapted from
+MCQMC26/slides/SpecialSession_MCQMC2026.qmd at commit ad7ef68, Proofs.
+The original losing/gaining slides have incorrect starting indices on their
+left sides. The appendix uses named retained, removed and added designs to
+avoid those transcription errors and to cover arbitrary point locations.
+Keep the integration space fixed throughout. The old source's extra lower
+bound on the preferred sequence is unnecessary for these three arguments.
+:::
+
+## One identity for adding and removing points {#bonus-discrepancy-identity}
+
+Fix the integration space $\cf$ and write $P:=\{\vu_i\}_{i=0}^{N-1}$, so $|P|=N$
+
+Define the integration error using each collection’s own cardinality
+
+\begin{equation*}
+\operatorname{err}_P(g):=\int_{[0,1]^d}g(\vu)\,\dif\vu-\frac1{|P|}\sum_{\vu\in P}g(\vu),
+\qquad \Dsc(P):=\sup_{\norm{g}_{\cf}\le1}|\operatorname{err}_P(g)|
+\end{equation*}
+
+Split the original $N$-point prefix into [retained]{.alert} points $R$ and [removed or lost]{.alert} points $L$
+
+\begin{equation*}
+P=R\sqcup L,\qquad |R|=N-r,\quad |L|=r
+\end{equation*}
+
+\begin{equation*}
+N \operatorname{err}_P(g)=(N-r)\operatorname{err}_R(g)+r\operatorname{err}_L(g)
+\end{equation*}
+
+Taking norms and rearranging gives
+
+\begin{align*}
+(N-r)\Dsc(R)&\le N\Dsc(P)+r\Dsc(L)\\
+r\Dsc(L)&\le N\Dsc(P)+(N-r)\Dsc(R)
+\end{align*}
+
+::: {.notes}
+Treat designs as indexed point collections, so repeated locations are allowed
+and sqcup partitions indices. Assume 1<=r<N; r=0 is trivial. The identity
+holds for every integrand, and the inequalities follow from the norm of the
+integration-error functional. The first inequality controls arbitrary
+deletions. With P a longer prefix and R the preceding preferred prefix, the
+second controls the intervening block for the growing-gap argument.
+For additions G, the same identity reads (N+r) err_{P union G} = N err_P + r err_G.
+No randomness or nesting assumption is needed for the edit inequalities.
+:::
+
+## Losing or adding a bounded number of points {#bonus-bounded-edits}
+
+Assume $\Dsc(P)\le CN^{-p}$ and that every nonempty finite design has discrepancy at most $A$
+
+Let $P^-$ retain any $N-r$ points, and let $P^+$ add any $r$ points
+
+\begin{align*}
+\Dsc(P^-)
+&\le\frac{N\Dsc(P)+rA}{N-r}
+\le\frac{CN^{1-p}+Ar}{N-r}\\[0.6em]
+\Dsc(P^+)
+&\le\frac{N\Dsc(P)+rA}{N+r}
+\le\frac{CN^{1-p}+Ar}{N+r}
+\end{align*}
+
+For $r=\Order(1)$ and $N\to\infty$
+
+\begin{equation*}
+\Dsc(P^\pm)=\Order\bigl(N^{-\min(p,1)}\bigr)
+\end{equation*}
+
+::: {.key-point}
+Keep the rate for $p\le1$; retain an $\Order(N^{-1})$ guarantee for $p>1$
+:::
+
+::: {.notes}
+The edited design need not be a prefix, and removed/added points can be at
+arbitrary locations. These are discrepancy upper bounds in the fixed space,
+not assertions that every edited design attains the bound. A bounded kernel
+diagonal supplies a finite A: if K(x,x)<=kappa^2 everywhere, the norm of
+both the integration representer and every equal-weight mean representer is
+at most kappa, so A=2 kappa suffices. For g in the space, multiply by its
+norm to obtain an integration-error bound. Since r is bounded, N and N+-r
+are asymptotically equivalent. The main talk's n uses the edited count.
+:::
+
+## Losing or adding a fraction of the points {#bonus-fraction-edits}
+
+Under the same assumptions, let $r\le\alpha N$ with $0\le\alpha<1$
+
+The deletion bound becomes
+
+\begin{equation*}
+\Dsc(P^-)
+\le\frac{CN^{-p}+A(r/N)}{1-r/N}
+\le\frac{CN^{-p}+A\alpha}{1-\alpha}
+\end{equation*}
+
+The addition bound satisfies
+
+\begin{equation*}
+\Dsc(P^+)\le CN^{-p}+A\alpha
+\end{equation*}
+
+For $\alpha\le\alpha_0<1$, both are $\Order(N^{-p}+\alpha)$
+
+::: {.key-point}
+For a fixed $\alpha>0$, the eventual upper guarantee is $\Order(\alpha)$
+:::
+
+::: {.notes}
+This supplies the finite-N statement behind the main slide's O(alpha)
+summary. The constant is uniform when the deleted fraction stays below a
+fixed alpha_0<1; losing nearly all values introduces the displayed 1/(1-alpha)
+factor. If alpha varies with N, retain both N^(-p) and alpha in the bound.
+It is a worst-case upper guarantee, not a nonzero lower error floor.
+The beam experiment instead chooses a fixed total of 64 random losses from
+a finite pool; it does not lose a fixed positive fraction at every N.
+:::
+
+## Why faster convergence requires growing gaps {#bonus-growing-gaps}
+
+Also assume every $q$-point design $B$ satisfies $\Dsc(B)\ge aq^{-Q}$, with $a>0$ and $Q\ge p>1$
+
+For preferred prefixes, assume $\Dsc(\{\vu_i\}_{i=0}^{n_m-1})\le Cn_m^{-p}$
+
+Set $q_m=n_{m+1}-n_m$ and $B_m=\{\vu_i\}_{i=n_m}^{n_{m+1}-1}$
+
+\begin{align*}
+aq_m^{-Q}
+&\le\Dsc(B_m)\\
+&\le\frac{C\bigl(n_{m+1}^{1-p}+n_m^{1-p}\bigr)}{q_m}
+\le\frac{2C n_m^{1-p}}{q_m}
+\end{align*}
+
+Hence
+
+\begin{equation*}
+q_m\ge\left(\frac{a}{2C}\right)^{1/(Q-1)}
+n_m^{(p-1)/(Q-1)}\longrightarrow\infty
+\end{equation*}
+
+::: {.key-point}
+Under this lower bound, $\Order(n^{-p})$ with $p>1$ cannot hold at every prefix
+:::
+
+[Return to the flexibility claims](#recent-work-flexible-low-discrepancy){.small}
+
+::: {.notes}
+The bound uses the block inequality from the first Bonus proof, and
+n_{m+1}^{1-p}<=n_m^{1-p} because p>1. The positive lower bound is an
+assumption on the fixed integration space, not a property of every kernel.
+Q>1 makes the exponent well defined. It is sufficient to assume a positive
+minimum discrepancy for every bounded point count to conclude that the gaps
+tend to infinity; the polynomial lower bound supplies this quantitative rate.
+The point collection B_m denotes the intervening indexed block even if node
+locations repeat. This corrects the source's incidental index notation while
+preserving its argument. The constants may depend on dimension and the space.
+:::

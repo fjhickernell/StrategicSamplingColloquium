@@ -3,12 +3,17 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
+  pre-render:
+    - bash ../classlib/tools/collaborator_assets.sh ../data/collaborators.yml --project .. --check
   resources:
     - ../assets/**
+    - ../classlib/website/fjh-academic-qr.png
 
 metadata-files:
   - ../classlib/classlib/quarto/slides/research/research-slides.yml
   - ../classlib/classlib/quarto/metadata/hickernell-papers.yml
+  - ../classlib/classlib/quarto/metadata/hickernell-collaborators.yml
+  - ../assets/headshots/manifest.json
 
 format:
   revealjs:

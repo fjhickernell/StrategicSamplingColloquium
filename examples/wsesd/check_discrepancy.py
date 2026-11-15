@@ -135,37 +135,41 @@ def plot(curves,out):
     plt.rcParams.update({'font.size':20,'mathtext.fontset':'stix','axes.spines.top':False,
         'axes.spines.right':False,'axes.grid':False,'svg.fonttype':'path'})
     colors={'KCN':'#0072B2','CBCDBD':'#009E73','W001':'#D55E00','W025':'#B55A96'}
-    labels={'KCN':'KCN','CBCDBD':'CBC–DBD','W001':r'WSESD: $w_n=n^{0.98}$','W025':r'WSESD: $w_n=n^{0.5}$'}
-    fig,(ax,bx)=plt.subplots(1,2,figsize=(14,5.4),gridspec_kw={'width_ratios':[1.12,1]})
+    labels={'KCN':'Kuo–Cools–Nuyens (KCN)','CBCDBD':'CBC–DBD','W001':r'WSESD: $\omega_n=n^{0.98}$','W025':r'WSESD: $\omega_n=n^{0.5}$'}
+    fig,(ax,bx)=plt.subplots(1,2,figsize=(14,5.8),gridspec_kw={'width_ratios':[1.12,1]})
     n=np.arange(1024,N+1)
-    for name in ['KCN','W001']:
-        ax.loglog(n,curves[f'{name}_13'][n-1],color=colors[name],lw=1.2,label=labels[name],rasterized=True)
     iid=np.sqrt(np.expm1(np.log1p(1/(6*np.arange(1,14)**2)).sum())/n)
     ax.loglog(n,iid,color='#777777',ls='--',lw=1.8,label='IID (exact reference)')
-    ax.set(xlabel='Sample size n',ylabel='Root ESD',title='Every integer prefix · d = 13')
+    for name in ['KCN','W001']:
+        ax.loglog(n,curves[f'{name}_13'][n-1],color=colors[name],lw=1.2,label=labels[name],rasterized=True)
+    ax.set(xlabel='Sample size n',ylabel='Root ESD',title='')
     ticks=2**np.arange(10,21,2)
     ax.xaxis.set_major_locator(FixedLocator(ticks))
     ax.xaxis.set_major_formatter(FixedFormatter([rf'$2^{{{k}}}$' for k in range(10,21,2)]))
     ax.minorticks_off()
-    ax.legend(frameon=True,facecolor='white',edgecolor='none',framealpha=1,
-        fontsize=16,loc='upper right')
-    for name in ['W001']:
-        qs=[]; maxima=[]
-        for k in range(10,20):
-            sizes=np.arange(2**k+1,2**(k+1))
-            ratio=curves[f'{name}_13'][sizes-1]/curves['KCN_13'][sizes-1]
-            qs.append(np.quantile(ratio,[.1,.5,.9]));maxima.append(ratio.max())
-        qs=np.array(qs);x=np.arange(10,20)
-        bx.fill_between(x,qs[:,0],qs[:,2],color=colors[name],alpha=.13)
-        bx.plot(x,qs[:,1],'-o',color=colors[name],lw=1.8,ms=5)
-        bx.plot(x,maxima,'x',color=colors[name],ms=6)
+    ax.legend(frameon=False,fontsize=17,loc='lower left',
+        bbox_to_anchor=(0,1.02),borderaxespad=0)
+    # Every box uses all non-dyadic integers in one open doubling interval.
+    # Boxes sit between their bounding powers of two on the log2 n axis.
+    # Whiskers deliberately show the full range, not the 1.5-IQR convention.
+    ratios=[]
+    for k in range(10,20):
+        sizes=np.arange(2**k+1,2**(k+1))
+        ratios.append(curves['W001_13'][sizes-1]/curves['KCN_13'][sizes-1])
+    bx.boxplot(ratios,positions=np.arange(10,20)+.5,widths=.6,whis=(0,100),
+        showfliers=False,patch_artist=True,
+        boxprops={'facecolor':'#F9D8C4','edgecolor':colors['W001'],'linewidth':1.3},
+        whiskerprops={'color':colors['W001'],'linewidth':1.2},
+        capprops={'color':colors['W001'],'linewidth':1.2},
+        medianprops={'color':colors['W001'],'linewidth':2})
     bx.axhline(1,color='#555555',ls='--',lw=1)
-    bx.set(xlabel=r'Interval: $2^k<n<2^{k+1}$',ylabel='Discrepancy ratio to KCN',
-        title='Between powers of two',xticks=np.arange(10,20),
-        ylim=(float(qs[:,0].min())-.04,1.2))
-    bx.text(.02,.97,'Dots: medians · shading: 10–90% range\nCrosses: worst prefix',
-        transform=bx.transAxes,fontsize=14,va='top')
-    fig.subplots_adjust(left=.075,right=.99,top=.88,bottom=.19,wspace=.34)
+    bx.set(xlabel='Sample size n',ylabel='Root ESD: WSESD / KCN',
+        xticks=np.arange(10,21),xlim=(9.75,20.25),
+        ylim=(min(float(r.min()) for r in ratios)-.03,1.16))
+    bx.set_xticklabels([rf'$2^{{{k}}}$' for k in range(10,21)],fontsize=17)
+    bx.xaxis.label.set_size(18)
+    bx.yaxis.label.set_size(18)
+    fig.subplots_adjust(left=.09,right=.985,top=.76,bottom=.23,wspace=.38)
     fig.savefig(out/'wsesd_prefix_discrepancy.png',dpi=200)
     svg_path=out/'wsesd_prefix_discrepancy.svg'
     fig.savefig(svg_path,dpi=200)

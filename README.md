@@ -28,6 +28,23 @@ The optional [Pydantic AI beam tool loop](examples/beam/README.md) uses a
 scripted policy by default and needs `pydantic-ai-slim`; the notebook itself
 uses the standard `qmcpy` environment.
 
+## Collaborator portraits
+
+Follow [the shared collaborator workflow](classlib/docs/collaborators.md).
+`data/collaborators.yml` explicitly selects this talk's people and order from
+the pinned master names catalog. Master photographs remain in iCloud Drive's
+`Collaborator Headshots` archive; this repository holds the selected
+publishing copies and hash manifest needed by GitHub Pages.
+
+```bash
+bash classlib/tools/collaborator_assets.sh data/collaborators.yml --refresh
+bash classlib/tools/collaborator_assets.sh data/collaborators.yml --check
+```
+
+Refresh reads iCloud deliberately. The slide pre-render check and public CI
+use the committed copies and need no iCloud access. The QMCPy gallery features Choi and Sorokin first, then the remaining people
+in surname order, with one six-column grid aligning all portrait rows.
+
 ## Sources
 
 - The title and abstract in `index.qmd` are the author's approved seminar text.

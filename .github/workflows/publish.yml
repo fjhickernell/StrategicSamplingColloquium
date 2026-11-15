@@ -17,6 +17,11 @@ jobs:
           submodules: recursive
           fetch-depth: 0
       - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Prepare collaborator check runtime
+        run: |
+          python3 -m venv "$RUNNER_TEMP/collaborator-python"
+          "$RUNNER_TEMP/collaborator-python/bin/python" -m pip install 'PyYAML>=6,<7'
+          echo "COLLABORATOR_PYTHON=$RUNNER_TEMP/collaborator-python/bin/python" >> "$GITHUB_ENV"
       - name: Render website
         run: quarto render
       - name: Render slides

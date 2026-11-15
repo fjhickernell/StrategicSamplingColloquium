@@ -93,6 +93,6 @@
       "win_count_difference": 0
     }
   ],
-  "seconds": 1.3853629999939585,
+  "seconds": 1.7246533329889644,
   "limitation": "Evaluates supplied vectors; does not verify their CBC construction or integration arrays"
 }
