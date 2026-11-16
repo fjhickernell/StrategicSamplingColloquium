@@ -28,6 +28,12 @@ format:
 
 {{< include _includes/journey.qmd >}}
 
+::: {.notes}
+Open with the central question: How good is every prefix, and what happens
+when evaluations fail? We want the accuracy of organized sampling while
+keeping the freedom to stop or add evaluations as needed.
+:::
+
 # Monte Carlo sampling helps us model and understand uncertainty
 
 ::: {.columns .application-gallery}
@@ -528,7 +534,6 @@ The reproducing kernel $K$ defines a Hilbert space $\cf$ of integrands
 \end{equation*}
 
 - The kernel encodes [smoothness and coordinate importance]{.alert}
-- With [moderate mixed smoothness]{.alert}, suitable designs attain $\Dsc(\{\vu_i\}_{i=0}^{n-1};K)=\Order(n^{-1+\epsilon})$ for every $\epsilon>0$
 
 ::: {.key-point}
 The bound is usually impractical for estimating the error\
@@ -582,7 +587,7 @@ structure can permit faster computation.
 
 ---
 
-### Expected squared discrepancy under a random shift
+### Expected squared and RMS discrepancy
 
 Use one common $\vDelta\sim\Unif([0,1]^d)$ and $\vu_i^{\vDelta}=(\vu_i+\vDelta)\bmod1$
 
@@ -592,11 +597,37 @@ Use one common $\vDelta\sim\Unif([0,1]^d)$ and $\vu_i^{\vDelta}=(\vu_i+\vDelta)\
 \ESD(\{\vu_i\}_{i=0}^{n-1};K):=\Ex_{\vDelta}\bigl[\Dsc^2(\{\vu_i^{\vDelta}\}_{i=0}^{n-1};K)\bigr]=-\overline K+\frac1{n^2}\sum_{i,j=0}^{n-1}\tK\bigl((\vu_i-\vu_j)\bmod1\bigr)
 \end{gather*}
 
-::: {.key-point}
-The formula applies to [every prefix length $n$]{.alert}
+[RMS discrepancy]{.alert}: $\sqrt{\Ex[\Dsc^2]}$
+
+| Sampling | Typical RMS discrepancy |
+|:---|:---|
+| IID | $\Order(n^{-1/2})$ |
+| LD, modest mixed smoothness | $\Order(n^{-1+\epsilon})$ |
+| Some randomized LD, greater mixed smoothness | $\Order(n^{-3/2+\epsilon})$ |
+
+::: {.small}
+Suitable kernels and designs; any $\epsilon>0$
 :::
 
 ::: {.notes}
+The shift formula applies to every prefix length n. The table summarizes
+typical attainable rates, not guarantees for every kernel or point set.
+In the general RMS definition, expectation is over the sampling method:
+independent points for IID, a shift or scramble for randomized LD, and a
+trivial expectation for a deterministic design. Thus the table's RMS is
+not restricted to the common-shift ESD defined above.
+For IID, E[D^2]=(integral K(u,u) du-K_0)/n, assuming the finite kernel
+integrals needed here. The LD rates use appropriate mixed-smoothness kernels.
+Some scrambled nets achieve root mean square discrepancy
+O(n^(-3/2) (log n)^((d-1)/2)) for sufficiently smooth kernels at suitable
+net sample sizes. For fixed dimension, logarithmic factors are absorbed
+in n^epsilon; constants may depend on the kernel, dimension, and epsilon.
+The faster rate is not asserted at every arbitrary prefix; the next slide
+introduces favored sample sizes. These are discrepancy rates, distinct
+from fixed-integrand RMSE, and do not certify the preceding application rates.
+Source: [Hickernell and Yue (2001), The Mean Square Discrepancy of Scrambled
+(t,s)-Sequences](https://doi.org/10.1137/S0036142999358019).
+
 All shifts and differences are componentwise modulo one. The shift-averaged
 kernel depends only on the difference of the two nodes, and its integral
 bar K equals K_0 from the preceding slide. Expected squared discrepancy is
@@ -799,6 +830,17 @@ and Kronecker comparison; no visible cross-talk citation is needed here.
 
 [ESD: expected squared discrepancy]{.alert}, $\ESD(\{\vu_i\}_{i=0}^{n-1};K)=\Ex_{\vDelta}[\Dsc^2(\{\vu_i^{\vDelta}\}_{i=0}^{n-1};K)]$
 
+- [ESD cost]{.alert}: $\Order(dn)$, with fewer than $2n$ product-kernel terms
+- [WSESD cost]{.alert}: $\Order(dN)$ per full generator, after precomputing sample-size weights
+
+::: {.key-point}
+Combine [all prefix qualities]{.alert} in one score to choose the generating vector
+:::
+
+::: {.notes}
+Explain the objective and computational savings; retain the grouped formulas
+below for specialist questions rather than deriving both during the talk.
+
 \begin{align*}
 \ESD_{\mathrm{lattice}}(n)
 &=-\overline K+\frac1{n^2}\biggl[n\tK(\vzero)+\sum_{k=1}^{2^m-1}c_n(k)\,\tK(\phi(k)\vzeta\bmod1)\biggr]\\[0.5em]
@@ -808,10 +850,6 @@ and Kronecker comparison; no visible cross-talk citation is needed here.
 
 $m=\lceil\log_2 n\rceil$; $c_n(k)$ counts ordered scalar differences equal to $\phi(k)$ modulo one
 
-- [ESD cost]{.alert}: $\Order(dn)$, with fewer than $2n$ product-kernel terms
-- [WSESD cost]{.alert}: $\Order(dN)$ per full generator, after precomputing sample-size weights
-
-::: {.notes}
 The shifted kernel tilde K and its integral bar K were defined on the earlier
 random-shift slide. Both formulas group the n^2 ordered pairs by distinct
 scalar differences. For the lattice, c_n(k) counts ordered scalar pairs
@@ -863,7 +901,17 @@ For product kernels, with earlier-coordinate products cached
 | Lattice, $N=2^m$, fast FFT search | $\Order(dN\log N)$ |
 | Kronecker, at most $M$ candidates per coordinate | $\Order(dMN)$ |
 
+::: {.key-point .small}
+For the studied kernels and suitable sample-size weights, [lattice CBC]{.alert} gives near-$n^{-1}$ root ESD for [every $1\le n\le N$]{.alert}
+:::
+
 ::: {.notes}
+The every-prefix theorem is for lattice CBC, not the Kronecker candidate
+scan. Fix the dimension, kernel, and target rate; the constants are independent
+of n and N, while the vector is chosen for each maximum N and target rate.
+This does not assert one ordinary integer vector for all horizons or rates.
+Source: Jiangrui manuscript 30c1f37, every-prefix corollary.
+
 The semicolon makes the dependence of the criterion on the candidate generator
 explicit. At stage ell, use the ell-dimensional criterion and hold every
 previously chosen coordinate fixed. The candidate set reflects the lattice
@@ -902,7 +950,7 @@ the construction parameter convention does not change these costs.
 </li>
 <li>
 <img src="../assets/headshots/processed/{{< meta headshots.kang-jiangrui.file >}}" alt="{{< meta collaborators.kang-jiangrui.name >}}">
-<div><span class="alert">{{< meta collaborators.kang-jiangrui.name >}}</span> — proved that the CBC construction for lattices produces generating vectors that give good sequences for all $n$</div>
+<div><span class="alert">{{< meta collaborators.kang-jiangrui.name >}}</span> — proved that lattice CBC produces generating vectors with good discrepancy for every prefix $1\le n\le N$</div>
 </li>
 
 <li>
@@ -919,7 +967,11 @@ the construction parameter convention does not change these costs.
 
 $d=13 \quad\cdot\quad 2^{10}\le n\le N=2^{20} \quad\cdot\quad \omega_n=n^{0.98}$
 
-Non-dyadic $n$: [94.7% improve]{.alert} on KCN · [11.9% worst increase]{.alert}
+[94.7% of non-dyadic prefixes]{.alert} have lower root ESD than KCN
+
+::: {.small}
+Boxes: integer prefixes · whiskers: full range · below $1$ favors WSESD · worst increase $11.9\%$
+:::
 
 ::: {.notes}
 Current manuscript computations, independently reconstructed from the supplied
@@ -964,16 +1016,20 @@ and assets/figures/wsesd_prefix_discrepancy.json.
 
 ## Back to the beam: 64 lost evaluations
 
-64 random losses from $2^{18}$ evaluations · first $n$ survivors
+64 unrecoverable random losses from $2^{18}$ evaluations · first $n$ survivors
 
 ::: {style="text-align:center;"}
 ![](../assets/figures/beam_missing_points_rmse.png){fig-alt="Paired beam mean-error plots: the first n evaluations of the complete sequence on the left, and the first n surviving evaluations on the right. Each replication removes one uniform random set of 64 indices from the full 262144-point sample, shared across all five methods and growing prefixes. Both panels begin at n equals 64 and have trend guides with slopes minus one half and minus one. The horizontal axes count evaluations actually used." width=96%}
 :::
 
+::: {.small}
 Standard QMCPy designs · $64$ randomizations · every integer $n$ used
 
+IID: value-independent losses leave [theoretical RMSE unchanged at the same retained $n$]{.alert}
+:::
+
 ::: {.key-point .small}
-Losses accumulate as $n$ grows and [cannot be repaired]{.alert}, so the slope over this range need not be the asymptotic rate
+LD errors increase after losses, but retain a [large advantage over IID in this example]{.alert}
 :::
 
 ::: {.notes}
@@ -1002,6 +1058,9 @@ baker transforms, and solver resolution match the earlier application plots.
 Both panels include n^(-1/2) and n^(-1) slope guides with the same
 normalizations, anchored to the first complete IID and Sobol RMSE values,
 respectively. These are visual trend guides, not fitted laws or guarantees.
+Losses accumulate as n grows and cannot be repaired, so the slope over this
+finite range need not be the asymptotic rate. Lead with the remaining LD
+advantage, then explain this qualification if discussing slopes.
 The full all-n RMSE arrays are saved in beam_missing_points_rmse_all_n.npz.
 Per-replication checkpoint estimates, missing indices, and reference
 diagnostics are in beam_missing_points_rmse.json; the notebook regenerates
@@ -1012,10 +1071,11 @@ differences remain; identical empirical curves are not required.
 Fixed losses do not guarantee preservation of a rate faster than 1/n.
 At the full-pool endpoint, conditional on the N output values, uniformly
 removing r values adds variance r*s_N^2/[N*(N-r)] to the full mean's MSE,
-where s_N^2 is the finite-sample variance with denominator N-1. The extra
-RMSE is therefore of order sqrt(r)/N if the expected sample variance is
-bounded. This caps a faster preferred-size rate at 1/N, while preserving
-the IID rate at the retained count. The beam outputs need not be bounded;
+where s_N^2 is the finite-sample variance with denominator N-1. Bounded
+expected sample variance gives an additional RMSE term O(sqrt(r)/N).
+For fixed r>=1, if that variance stays bounded away from zero, the deletion
+term prevents an overall RMSE rate faster than 1/N. Value-independent
+deletion preserves the IID rate at the retained count. The beam outputs need not be bounded;
 this explanation uses finite second moments instead of a uniform output bound.
 Within this finite-pool prefix experiment, the number of encountered losses
 grows with n rather than remaining 64 in every prefix. In an attempted
@@ -1079,10 +1139,11 @@ The existing bounded beam prototype remains in examples/beam/ for exploration.
 ## Take-home message
 
 ::: {.main-message}
-Sample more strategically while keeping the freedom to add more as needed, and do not sweat a few lost evaluations
+Sample more strategically while keeping the freedom to add more as needed
 :::
 
 - LD often beats IID by [a lot]{.alert}
+- Here, missing evaluations reduce LD accuracy but leave a [large advantage over IID]{.alert}
 - Mathematics constructs and assesses LD sequences across sample sizes
 - QMCPy makes the designs usable in simulations
 - Human intelligence guides AI toward useful, checked discoveries
